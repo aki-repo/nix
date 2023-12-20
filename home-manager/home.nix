@@ -46,9 +46,19 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [ 
-  			vscode 
-  			];
+  home.packages = with pkgs;
+  let
+    RStudio-with-my-packages = rstudioWrapper.override{
+      packages = with rPackages;
+      [
+        tidyverse
+      ];
+    };
+    in
+    [ 
+  		vscode
+      #obsidian 
+  	];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
